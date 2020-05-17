@@ -1,0 +1,115 @@
+"  ____             _                         ____          _
+" |  _ \  __ _ _ __| | ___ __   ___  ___ ___ / ___|___   __| | ___
+" | | | |/ _` | '__| |/ / '_ \ / _ \/ __/ __| |   / _ \ / _` |/ _ \
+" | |_| | (_| | |  |   <| | | |  __/\__ \__ \ |__| (_) | (_| |  __/
+" |____/ \__,_|_|  |_|\_\_| |_|\___||___/___/\____\___/ \__,_|\___|
+" https://darknesscode.com
+" https://github.com/codedakrness
+
+let mapleader =" "
+
+set encoding=UTF-8
+set number
+set laststatus=2
+set nocompatible
+set cmdheight=1
+set mouse=a
+set t_Co=256
+
+syntax on
+filetype plugin on
+
+call plug#begin('~/.vim/bundle')
+	Plug 'preservim/nerdtree'
+	Plug 'PotatoesMaster/i3-vim-syntax'
+	Plug 'ryanoasis/vim-devicons'
+	Plug 'plasticboy/vim-markdown'
+	Plug 'othree/html5.vim'
+	Plug 'stanangeloff/php.vim'
+	Plug 'hdima/python-syntax'
+	Plug 'cespare/vim-toml'
+	Plug 'cakebaker/scss-syntax.vim'
+	Plug 'gregsexton/matchtag'
+	Plug 'elzr/vim-json'
+	Plug 'itchyny/lightline.vim'
+	Plug 'francoiscabrol/ranger.vim'
+	Plug 'vimwiki/vimwiki'
+	Plug 'sirver/ultisnips'
+	Plug 'ap/vim-css-color'
+call plug#end()
+
+" Remap ESC to ii
+:imap ii <Esc>
+
+" Snippets
+let g:UltiSnippetsDirectories=[$HOME.'/.vim/bundle/vin-snippets']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Enable autocompletion:
+set wildmode=longest,list,full
+
+" Nerd tree
+map <leader>n :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '►'
+let g:NERDTreeDirArrowCollapsible = '▼'
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+
+" Automatically deletes all trailing whitespace on save.
+autocmd BufWritePre * %s/\s\+$//e
+
+" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
+set splitbelow splitright
+
+" Desable fold lines
+set nofoldenable
+
+" Shortcutting split navigation, saving a keypress:
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Shortcutting split, tabs opening
+map <leader>h :split<CR>
+map <leader>v :vsplit<CR>
+map <leader>t :tabnew<CR>
+
+" Changing some colors ctermbg=black
+highlight EndOfBuffer ctermfg=black
+
+" vim wiki
+let g:vimwiki_list = [{'path': '~/Documents/darkwiki/'}]
+
+" status line color scheme
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
+
+" Remove mode below of the status line
+set noshowmode
+
+" Remove pipes in vertical/horizontal splits
+set fillchars+=vert:\ 
+
+" colors
+highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
+highlight CursorLineNr     ctermfg=7    ctermbg=8       cterm=none
+highlight VertSplit        ctermfg=0    ctermbg=8       cterm=none
+highlight Statement        ctermfg=2    ctermbg=none    cterm=none
+highlight Directory        ctermfg=4    ctermbg=none    cterm=none
+" highlight StatusLine       ctermfg=7    ctermbg=8       cterm=none
+" highlight StatusLineNC     ctermfg=7    ctermbg=8       cterm=none
+highlight NERDTreeClosable ctermfg=2
+highlight NERDTreeOpenable ctermfg=8
+highlight Comment          ctermfg=4    ctermbg=none    cterm=none
+highlight Constant         ctermfg=12   ctermbg=none    cterm=none
+highlight Special          ctermfg=4    ctermbg=none    cterm=none
+highlight Identifier       ctermfg=6    ctermbg=none    cterm=none
+highlight PreProc          ctermfg=5    ctermbg=none    cterm=none
+highlight String           ctermfg=12   ctermbg=none    cterm=none
+highlight Number           ctermfg=1    ctermbg=none    cterm=none
+highlight Function         ctermfg=1    ctermbg=none    cterm=none
