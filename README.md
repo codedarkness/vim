@@ -33,7 +33,11 @@ To install the plugins, open vim and run:
 :PlugInstall
 ```
 
-The vim-plug is including in this repository.
+Plugins included in this repo:
+
+* vim-plug
+* vim-wiki
+* ultisnips
 
 ## Keybindings
 
