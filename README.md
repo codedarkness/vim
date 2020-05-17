@@ -33,6 +33,24 @@ To install the plugins, open vim and run:
 :PlugInstall
 ```
 
+To update installed pluging run:
+
+```
+:PlugUpdate
+```
+
+To remove unlisted plugins run:
+
+```
+PlugClean
+```
+
+To upgrade vim-plug iself run:
+
+```
+:PlugUpgrade
+```
+
 Plugins included in this repo:
 
 * vim-plug
