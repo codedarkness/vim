@@ -54,8 +54,6 @@ To upgrade vim-plug iself run:
 Plugins included in this repo:
 
 * vim-plug
-* vim-wiki
-* ultisnips
 
 ## Keybindings
 

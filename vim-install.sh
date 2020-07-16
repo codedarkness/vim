@@ -23,28 +23,46 @@
 # -----------------------------------------------------------------
 
 arch-based() {
-	echo "";
-	echo " Installing or update vim - ArchBased systems";
+	echo ""
+	echo " Installing or update vim - ArchBased systems"
+	echo ""
 	sleep 2;
+
 	pacman -Qs vim &&
-		echo " ##### vim is installed and updated" ||
-		sudo pacman -S --nonconfirmation -needed vim;
+	echo " vim is installed and updated" ||
+	sudo pacman -S --nonconfirmation -needed vim
+	echo ""
 }
 
 debian-based() {
-	echo "";
-	echo " Installing or update vim - DebianBased systems";
+	echo ""
+	echo " Installing or update vim - DebianBased systems"
+	echo ""
 	sleep 2;
+
 	dpkg -l | grep vim &&
-		echo " ##### vim is installed and update" ||
-		sudo apt install -y vim
+	echo " vim is installed and update" ||
+	sudo apt install -y vim
+	echo ""
 }
 
 config-files() {
+	echo ""
+	echo " Getting ready to copy vim config files"
+	echo ""
+	sleep 2;
+
 	cp -ar config-files/vim/ $HOME/.vim/ &&
-		echo " ##### vim directory and plugins was copied";
+	echo " ##### vim directory and plugins was copied" || echo " Upssss!"
+	echo ""
+
 	cp -ar config-files/vimrc $HOME/.vimrc &&
-		echo " ##### vimrc was copied";
+	echo " ##### vimrc was copied" || echo " Don't worry is your system, not you!"
+	echo ""
+
+	mkdir ~/.vim/bundle/ &&
+	echo " bundle directory has been created" || echo " something is wrong"
+	echo ""
 }
 
 press_enter() {
@@ -68,13 +86,13 @@ until [ "$selection" = "0" ]; do
 	echo " \ \ / / | '_ ' _ \  "
 	echo "  \ V /| | | | | | | "
 	echo "   \_/ |_|_| |_| |_| "
-	echo " ----------------------------------"
-	echo " ### the ubiquitous text editor ###"
-	echo " ----------------------------------"
+	echo ""
+	echo " The ubiquitous text editor"
 	echo ""
 	echo " 1 - Install in Arch Based"
 	echo " 2 - Install in Debian Based"
 	echo " 3 - Copy (custom) config files"
+	echo ""
 	echo " 0 - Exit"
 	echo ""
 	echo -n " Enter selection [1 - 0] : "
