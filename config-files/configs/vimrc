@@ -36,6 +36,13 @@ call plug#begin('~/.vim/bundle')
 	Plug 'vimwiki/vimwiki'
 	Plug 'sirver/ultisnips'
 	Plug 'ap/vim-css-color'
+	Plug 'thisivan/vim-taglist'
+	Plug 'preservim/nerdcommenter'
+	Plug 'tpope/vim-surround'
+	Plug 'dense-analysis/ale'
+	Plug 'frazrepo/vim-rainbow'
+	Plug 'neovimhaskell/haskell-vim'
+	Plug 'scrooloose/vim-fugitive'
 call plug#end()
 
 " Remap ESC to ii
@@ -93,7 +100,7 @@ let g:lightline = {
 set noshowmode
 
 " Remove pipes in vertical/horizontal splits
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 
 " colors
 highlight LineNr           ctermfg=8    ctermbg=none    cterm=none

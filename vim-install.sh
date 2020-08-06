@@ -22,15 +22,42 @@
 #
 # -----------------------------------------------------------------
 
-arch-based() {
+install-vim() {
 	echo ""
-	echo " Installing or update vim - ArchBased systems"
+	echo " Installing Vim"
+	echo " Arch, Debian Based Systems"
 	echo ""
 	sleep 2;
 
-	pacman -Qs vim &&
-	echo " vim is installed and updated" ||
-	sudo pacman -S --nonconfirmation -needed vim
+	while true; do
+		read -p " Install Vim [y - n] : " yn
+		case $yn in
+			[Yy]* )
+				if ! location="$(type -p "vim")" || [ -z "vim" ]; then
+
+					# check if pacman is installed
+					if which pacman > /dev/null; then
+
+						sudo pacman -S --noconfirm --needed vim
+
+					fi
+
+					# check if apt is installed
+					if which apt > /dev/null; then
+
+						sudo apt install -y vim
+
+					fi
+
+				else
+					echo " nothing to do!"
+				fi; break ;;
+			[Nn]* )
+				break ;;
+			* ) echo "Please answer yes or no." ;;
+		esac
+	done
+
 	echo ""
 }
 
@@ -46,23 +73,62 @@ debian-based() {
 	echo ""
 }
 
-config-files() {
+copy-files() {
 	echo ""
 	echo " Getting ready to copy vim config files"
 	echo ""
 	sleep 2;
 
-	cp -ar config-files/vim/ $HOME/.vim/ &&
-	echo " ##### vim directory and plugins was copied" || echo " Upssss!"
+	## autoload directory
+	### Check for dir, if not found create it using the mkdir ###
+	dldir="$HOME/.vim/autoload"
+	[ ! -d "$dldir" ] && mkdir -p "$dldir" &&
+	echo " autoload directory was created" || echo " $dldir already exist!"
 	echo ""
 
-	cp -ar config-files/vimrc $HOME/.vimrc &&
-	echo " ##### vimrc was copied" || echo " Don't worry is your system, not you!"
+	## UltiSnips directory
+	### Check for dir, if not found create it using the mkdir ###
+	dldir2="$HOME/.vim/UltiSnips"
+	[ ! -d "$dldir2" ] && mkdir -p "$dldir2" &&
+	echo " UltiSnips directory was created" || echo " $dldir2 already exist!"
 	echo ""
 
-	mkdir ~/.vim/bundle/ &&
-	echo " bundle directory has been created" || echo " something is wrong"
+	## bundle directory
+	### Check for dir, if not found create it using the mkdir ###
+	dldir3="$HOME/.vim/bundle"
+	[ ! -d "$dldir3" ] && mkdir -p "$dldir3" &&
+	echo " bundle directory was created" || echo " $dldir3 already exist!"
 	echo ""
+
+	cp -af config-files/configs/plug.vim $HOME/.vim/autoload/ &&
+	echo " plug.vim was copied" || echo " Sssshhhhh!!"
+	echo ""
+
+	cp -af config-files/configs/all.snippets $HOME/.vim/UltiSnips &&
+	echo " general snippets file was copied" || echo " Not again!!!"
+	echo ""
+
+	cp -ar config-files/configs/vimrc $HOME/.vimrc &&
+	echo " vimrc was copied" || echo " Don't worry is your system, not you!"
+	echo ""
+}
+
+edit-vimrc() {
+	echo ""
+	echo " Edit Vimcr in your local machine"
+	echo ""
+	sleep 2
+
+	while true; do
+		read -p " Edit vimrc [y - n] : " yn
+		case $yn in
+			[Yy]* )
+				vim ~/.vimrc; break ;;
+			[Nn]* )
+				break ;;
+			* ) echo "Please answer yes or no." ;;
+		esac
+	done
 }
 
 press_enter() {
@@ -89,9 +155,9 @@ until [ "$selection" = "0" ]; do
 	echo ""
 	echo " The ubiquitous text editor"
 	echo ""
-	echo " 1 - Install in Arch Based"
-	echo " 2 - Install in Debian Based"
-	echo " 3 - Copy (custom) config files"
+	echo " 1 - Install"
+	echo " 2 - Copy (custom) config files"
+	echo " 3 - Edit Vimrc file (local)"
 	echo ""
 	echo " 0 - Exit"
 	echo ""
@@ -100,9 +166,9 @@ until [ "$selection" = "0" ]; do
 	echo ""
 
 	case $selection in
-		1) clear; arch-based   ; press_enter ;;
-		2) clear; debian-based ; press_enter ;;
-		3) clear; config-files ; press_enter ;;
+		1) clear; install-vim ;;
+		2) clear; copy-files   ; press_enter ;;
+		3) clear; edit-vimrc   ; press_enter ;;
 		0) clear; exit ;;
 		*) clear; incorrect_selection ; press_enter ;;
 	esac

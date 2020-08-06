@@ -26,6 +26,13 @@ Plugin manager vim-plug
 * vimwiki
 * ultisnips
 * lightline
+* Ale
+* vim-surround
+* vim-rainbow
+* hakell-vim
+* vim-fugitive
+* vim-taglist
+* nerdcommenter
 
 To install the plugins, open vim and run:
 
