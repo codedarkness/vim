@@ -106,3 +106,35 @@ done
 
 $0
 endsnippet
+
+snippet install "Menu to install software" b
+while true; do
+	read -p " ${1:-SoftwareName} [y - n] : " yn
+	case $yn in
+		[Yy]* )
+			if ! location="$(type -p "${2:-Software}")" || [ -z "${3:-Software}" ]; then
+
+				# check if pacman is installed
+				if which pacman > /dev/null; then
+
+					sudo pacman -S --noconfirm ${4:-Software}
+
+				# check if apt is installed
+				elif which apt > /dev/null; then
+
+					sudo apt install -y ${5:-Software}
+
+				else
+
+					echo " Your system is not Arch or Debian Based System"
+				fi
+
+				else
+					echo " Nothing to do! ${6:-Software} is installed in your System"
+			fi ; break ;;
+		[Nn]* )
+			break ;;
+		* ) echo "Please answer yes or no." ;;
+	esac
+done
+endsnippet
