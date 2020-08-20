@@ -138,3 +138,10 @@ while true; do
 	esac
 done
 endsnippet
+
+snippet
+## ${1:-dirName}
+### Check for dir, if not found create it using the mkdir
+dldir="$HOME/${2:-dirFullPaht}"
+[ ! -d "$dldir" ] && mkdir -p "$dldir"
+endsnippet
