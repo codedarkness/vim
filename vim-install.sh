@@ -25,9 +25,9 @@
 install-vim() {
 	echo ""
 	echo " Installing Vim"
-	echo " Arch, Debian Based Systems"
+	echo " Arch Liux | Debian | Void Linux"
 	echo ""
-	sleep 2;
+	sleep 2
 
 	while true; do
 		read -p " Install Vim [y - n] : " yn
@@ -36,18 +36,23 @@ install-vim() {
 				if ! location="$(type -p "vim")" || [ -z "vim" ]; then
 
 					# check if pacman is installed
-					if which pacman > /dev/null; then
+					if which pacman > /dev/null 2>&1; then
 
 						sudo pacman -S --noconfirm vim
 
 					# check if apt is installed
-					elif which apt > /dev/null; then
+					elif which apt > /dev/null 2>&1; then
 
-						sudo apt install -y vim
+						sudo apt install -y vim-nox
+
+					# check if xbps is installed
+					elif which xbps-install > /dev/null 2>&1; then
+
+						sudo xbps-install -Sy vim-huge
 
 					else
 
-						echo " Your system is not Arch or Debian Based System"
+						echo " Your system is not supported"
 					fi
 
 					else
@@ -155,7 +160,7 @@ until [ "$selection" = "0" ]; do
 	echo ""
 
 	case $selection in
-		1) clear; install-vim ;;
+		1) clear; install-vim  ; press_enter ;;
 		2) clear; copy-files   ; press_enter ;;
 		3) clear; edit-vimrc   ; press_enter ;;
 		0) clear; exit ;;
