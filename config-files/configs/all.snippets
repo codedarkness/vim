@@ -123,7 +123,11 @@ while true; do
 				elif which apt > /dev/null; then
 
 					sudo apt install -y ${5:-Software}
+				
+				# check xbps is inatalled
+				elif which xbps-install > /dev/null; then
 
+					sudo xbps-install -y ${6:-Software}
 				else
 
 					echo " Your system is not Arch or Debian Based System"
@@ -139,9 +143,11 @@ while true; do
 done
 endsnippet
 
-snippet
-## ${1:-dirName}
-### Check for dir, if not found create it using the mkdir
-dldir="$HOME/${2:-dirFullPaht}"
-[ ! -d "$dldir" ] && mkdir -p "$dldir"
+snippet checkdir "Check or create directory" b
+## ${1:-name} directory
+### Check for dir, if not found create it using the mkdir ###
+${2:-name}="$HOME/.config/${3:-name}"
+[ ! -d "$${4:-name}" ] && mkdir -p "$${5:-name}" &&
+echo " ${6:-name} directory was created" || echo " $${7:-name} already exist!"
+echo ""
 endsnippet
