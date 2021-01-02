@@ -3,7 +3,7 @@
 " | | | |/ _` | '__| |/ / '_ \ / _ \/ __/ __| |   / _ \ / _` |/ _ \
 " | |_| | (_| | |  |   <| | | |  __/\__ \__ \ |__| (_) | (_| |  __/
 " |____/ \__,_|_|  |_|\_\_| |_|\___||___/___/\____\___/ \__,_|\___|
-" https://darknesscode.com
+" https://darknesscode.xyz
 " https://github.com/codedakrness
 
 let mapleader =" "
@@ -38,7 +38,6 @@ call plug#begin('~/.vim/bundle')
 	Plug 'vimwiki/vimwiki'
 	Plug 'sirver/ultisnips'
 	Plug 'ap/vim-css-color'
-	Plug 'thisivan/vim-taglist'
 	Plug 'preservim/nerdcommenter'
 	Plug 'tpope/vim-surround'
 	Plug 'dense-analysis/ale'
@@ -47,8 +46,8 @@ call plug#begin('~/.vim/bundle')
 	Plug 'scrooloose/vim-fugitive'
 call plug#end()
 
-" Remap ESC to ii
-:imap ii <Esc>
+" Remap ESC to ;;
+:imap ;; <Esc>
 
 " Snippets
 let g:UltiSnippetsDirectories=[$HOME.'/.vim/bundle/vin-snippets']
