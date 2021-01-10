@@ -17,6 +17,9 @@ set mouse=a
 set t_Co=256
 set tabstop=4
 set shiftwidth=4
+set noerrorbells
+set visualbell
+set t_vb=
 
 syntax on
 filetype plugin on
@@ -101,7 +104,7 @@ let g:lightline = {
 set noshowmode
 
 " Remove pipes in vertical/horizontal splits
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 
 " colors
 highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
