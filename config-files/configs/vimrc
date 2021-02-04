@@ -61,6 +61,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Enable autocompletion:
 set wildmode=longest,list,full
 
+" Spell check for US English
+map <leader>e :setlocal spell! spelllang=en_us<CR>
+
+" Spell check for Spanish
+map <leader>s :setlocal spell! spelllang=es<CR>
+
 " Nerd tree
 map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -104,7 +110,7 @@ let g:lightline = {
 set noshowmode
 
 " Remove pipes in vertical/horizontal splits
-set fillchars+=vert:\
+set fillchars+=vert:\ 
 
 " colors
 highlight LineNr           ctermfg=8    ctermbg=none    cterm=none

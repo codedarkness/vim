@@ -40,7 +40,7 @@ To install the plugins, open vim and run:
 :PlugInstall
 ```
 
-To update installed pluging run:
+To update installed plugin run:
 
 ```
 :PlugUpdate
@@ -52,7 +52,7 @@ To remove unlisted plugins run:
 PlugClean
 ```
 
-To upgrade vim-plug iself run:
+To upgrade vim-plug itself run:
 
 ```
 :PlugUpgrade
@@ -64,18 +64,18 @@ Plugins included in this repo:
 
 ## Keybindings
 
-Some usful keybindings for this custom build:
+Some useful keybindings for this custom build:
 
 Leader key = SpaceBar
 
-| Key      | Acction             |
+| Key      | Action             |
 | :------- | :------------------ |
 | Leader+n | NerdTree            |
 | Leader+f | Ranger File Manager |
-| Leater+v | Split Horizontal    |
+| Leader+v | Split Horizontal    |
 | Leaver+h | Split Vertical      |
 | Ctrl+h   | Change Split Left   |
-| Ctrl+j   | Change Split Dwon   |
+| Ctrl+j   | Change Split Down   |
 | Ctrl+k   | Change Split Up     |
 | Ctrl+l   | Change Split Right  |
 | ii       | Normal Mode	 |
