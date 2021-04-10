@@ -67,6 +67,9 @@ map <leader>e :setlocal spell! spelllang=en_us<CR>
 " Spell check for Spanish
 map <leader>s :setlocal spell! spelllang=es<CR>
 
+" Insert Date
+:nnoremap <F5> "=strftime("%a %d %b %Y")<CR>P
+
 " Nerd tree
 map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -110,7 +113,7 @@ let g:lightline = {
 set noshowmode
 
 " Remove pipes in vertical/horizontal splits
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 
 " colors
 highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
