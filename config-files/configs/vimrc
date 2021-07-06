@@ -17,15 +17,27 @@ set mouse=a
 set t_Co=256
 set tabstop=4
 set shiftwidth=4
-set noerrorbells
-set visualbell
-set t_vb=
+
+" Enable autocompletion:
+set wildmode=longest,list,full
+
+" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
+set splitbelow splitright
+
+" Desable fold lines
+set nofoldenable
+
+" Remove mode below of the status line
+set noshowmode
+
+" Remove pipes in vertical/horizontal splits
+set fillchars+=vert:\ 
 
 syntax on
 filetype plugin on
 
 call plug#begin('~/.vim/bundle')
-	Plug 'preservim/nerdtree'
+	"Plug 'preservim/nerdtree'
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'plasticboy/vim-markdown'
@@ -50,16 +62,22 @@ call plug#begin('~/.vim/bundle')
 call plug#end()
 
 " Remap ESC to ;;
-:imap ;; <Esc>
+:imap ii <Esc>
+
+" Save file
+map zz :w<CR>
+
+" File Explorer
+let g:netrw_banner = 0
+map EE :Explore<CR>
+map SS :Sexplore<CR>
+map VV :Vexplore<CR>
 
 " Snippets
 let g:UltiSnippetsDirectories=[$HOME.'/.vim/bundle/vin-snippets']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" Enable autocompletion:
-set wildmode=longest,list,full
 
 " Spell check for US English
 map <leader>e :setlocal spell! spelllang=en_us<CR>
@@ -68,24 +86,19 @@ map <leader>e :setlocal spell! spelllang=en_us<CR>
 map <leader>s :setlocal spell! spelllang=es<CR>
 
 " Insert Date
-:nnoremap <F5> "=strftime("%a %d %b %Y")<CR>P
+:map <F5> "=strftime("%a %d %b %Y")<CR>P
+
+" Quickly open/reload vim
+map <leader>ev :split $MYVIMRC<CR>
+map <leader>sv :source $MYVIMRC<CR>
 
 " Nerd tree
-map <leader>n :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeDirArrowExpandable = '►'
-let g:NERDTreeDirArrowCollapsible = '▼'
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-
-" Automatically deletes all trailing whitespace on save.
-autocmd BufWritePre * %s/\s\+$//e
-
-" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-set splitbelow splitright
-
-" Desable fold lines
-set nofoldenable
+" map <leader>n :NERDTreeToggle<CR>
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" let g:NERDTreeDirArrowExpandable = '►'
+" let g:NERDTreeDirArrowCollapsible = '▼'
+" let NERDTreeShowHidden=1
+" let NERDTreeMinimalUI = 1
 
 " Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
@@ -102,18 +115,15 @@ map <leader>t :tabnew<CR>
 highlight EndOfBuffer ctermfg=black
 
 " vim wiki
-let g:vimwiki_list = [{'path': '~/Documents/darkwiki/'}]
+let g:vimwiki_list = [{'path': '~/Documents/myScripts/darkwiki/darknesscode/'}]
 
 " status line color scheme
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ }
 
-" Remove mode below of the status line
-set noshowmode
-
-" Remove pipes in vertical/horizontal splits
-set fillchars+=vert:\
+" Automatically deletes all trailing whitespace on save.
+autocmd BufWritePre * %s/\s\+$//e
 
 " colors
 highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
